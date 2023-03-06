@@ -3,7 +3,7 @@
 These are the supplementary files for the [Core-based Trend Detection paper](link).
 
 ## Usage
-Until this is packaged, source the file(s) algorithms/innerCore.R or utils.py
+Until this is packaged, source the file(s) `algorithms/innerCore.R` or `utils.py`
 
 ### Get a weighted directed graph with named vertices and edge weights:
 ```R
@@ -47,7 +47,7 @@ V(g)$name <- paste("v", 1:vcount(g), sep="")
 ```
 
 
-### Get the 3-node motif counts of each node
+### Get the 3-node motif counts of each node using the utility function in `innerCore.R`
 ```R
 > countThreeNodeMotifs(g)
   node motif1 motif2 motif3 motif4 motif5 motif6 motif7 motif8 motif9 motif10 motif11 motif12 motif13 motif14 motif15 motif16
