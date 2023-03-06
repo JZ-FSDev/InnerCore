@@ -47,8 +47,26 @@ V(g)$name <- paste("v", 1:vcount(g), sep="")
 ```
 
 
+### Get the 3-node motif counts of each node
+```R
+> countThreeNodeMotifs(g)
+  node motif1 motif2 motif3 motif4 motif5 motif6 motif7 motif8 motif9 motif10 motif11 motif12 motif13 motif14 motif15 motif16
+1   v1      0      0      0      3      0      0      0      0      0       0       0       0       0       0       0       0
+2   v2      0      0      0     15      1     12      0      0      0       0       0       0       0       0       0       0
+3   v3      0      4      0      0      0      0      0      0      0       0       0       0       0       0       0       0
+4   v4      0      0      0      1      0      2      0      0      0       0       0       0       0       0       0       0
+5   v5      0      0      0      0      3      3      0      0      0       0       0       0       0       0       0       0
+ ---
+196 v196    3      0      0      0      0      0      0      0      0       0       0       0       0       0       0       0
+197 v197    0      0      0      6      0      4      0      0      0       0       0       0       0       0       0       0
+198 v198    0      0      0      1      1      4      0      0      0       0       0       0       0       0       0       0
+199 v199    0      0      0      1      3      6      0      0      0       0       0       0       0       0       0       0
+200 v200    0      0      0      3      3      9      0      0      0       0       0       0       0       0       0       0
+```
+
+
 ### Computing expansion and decay measures of daily temporal networks
-For a directory with the following files:
+For an example directory with the following files:
 ```
 eth_innerCore_025_1661126400.csv
 eth_innerCore_025_1661212800.csv
@@ -76,26 +94,8 @@ to produce the results file `expansion_decay_1661212800_to_1661299200_i=1.csv` i
 ```
 
 
-### Get the 3-node motif counts of each node
-```R
-> countThreeNodeMotifs(g)
-  node motif1 motif2 motif3 motif4 motif5 motif6 motif7 motif8 motif9 motif10 motif11 motif12 motif13 motif14 motif15 motif16
-1   v1      0      0      0      3      0      0      0      0      0       0       0       0       0       0       0       0
-2   v2      0      0      0     15      1     12      0      0      0       0       0       0       0       0       0       0
-3   v3      0      4      0      0      0      0      0      0      0       0       0       0       0       0       0       0
-4   v4      0      0      0      1      0      2      0      0      0       0       0       0       0       0       0       0
-5   v5      0      0      0      0      3      3      0      0      0       0       0       0       0       0       0       0
- ---
-196 v196    3      0      0      0      0      0      0      0      0       0       0       0       0       0       0       0
-197 v197    0      0      0      6      0      4      0      0      0       0       0       0       0       0       0       0
-198 v198    0      0      0      1      1      4      0      0      0       0       0       0       0       0       0       0
-199 v199    0      0      0      1      3      6      0      0      0       0       0       0       0       0       0       0
-200 v200    0      0      0      3      3      9      0      0      0       0       0       0       0       0       0       0
-```
-
-
 ### Compute the motif NF-IAF scores of each address of each day
-For a directory with the following files:
+For an example directory with the following files:
 ```
 alphaCore_1648857600_motif4.csv
 alphaCore_1648944000_motif4.csv
@@ -126,6 +126,9 @@ to produce the results file `nfiaf_1648857600_to_1649030400_motif4.csv` in the f
         --- 
 ```
 
+
+## Datasets
+The full [Ethereum Stablecoin Networks](https://chartalist.org/eth/StablecoinAnalysis.html) and [Ethereum Transaction Network](link) is publicly available on Chartalist.
 
 # Citing
 Please use the following BibTeX entry:
