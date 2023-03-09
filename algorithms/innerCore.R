@@ -146,8 +146,9 @@ mhdOrigin <- function(data, sigma_inv) {
 #' @param data Name of the .csv file containing the transfer data
 #' @param senderColName Name of the column from data containing the sender
 #' @param recipientColName Name of the column from data containing the recipient
-#' @param timestampColName Name of the column containing the timestam
-#' @param workingDirectory The path of the working directory
+#' @param timestampColName Name of the column containing the timestamp
+#' @param valueColName Name of the column containing the value
+#' @param colClass The column classes of the data file as a vector
 temporalInnerCoreToCSV <- function(epsilon, 
                                    start, 
                                    end, 
@@ -155,10 +156,9 @@ temporalInnerCoreToCSV <- function(epsilon,
                                    senderColName,
                                    recipientColName,
                                    timestampColName,
-                                   workingDirectory) {
-  setwd(workingDirectory)
-  df = read.csv(data, colClasses = c("character", "character", "numeric", "integer"))
-
+                                   valueColName,
+                                   colClass) {
+  df = read.csv(data, colClasses = colClass)
   readIndex = 1
   currDay = start
   currDayEnd = start + 86400
@@ -170,14 +170,14 @@ temporalInnerCoreToCSV <- function(epsilon,
 
     writeIndex = 1
     for (row in readIndex:nrow(df)) {
-      if(currDay <= df$timestampColName[row] & df$timestampColName[row] < currDayEnd){
-        to_address[writeIndex] = df$senderColName[row]
-        from_address[writeIndex] = df$senderColName[row]
-        weight[writeIndex] = df$value[row]
+      if(currDay <= df[[timestampColName]][row] & df[[timestampColName]][row] < currDayEnd){
+        to_address[writeIndex] = df[[recipientColName]][row]
+        from_address[writeIndex] = df[[senderColName]][row]
+        weight[writeIndex] = df[[valueColName]][row]
         writeIndex = writeIndex + 1
       }
       readIndex = readIndex + 1
-      if(df$timestampColName[row] > currDayEnd){
+      if(df[[timestampColName]][row] > currDayEnd){
         break
       }
     }
