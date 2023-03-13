@@ -128,7 +128,7 @@ to produce the results file `nfiaf_1648857600_to_1649030400_motif4.csv` in the f
 
 
 ## Datasets
-The full [Ethereum Stablecoin Networks](https://chartalist.org/eth/StablecoinAnalysis.html) and [Ethereum Transaction Network](link) is publicly available on Chartalist.
+The full [Ethereum Stablecoin Networks](https://chartalist.org/eth/StablecoinAnalysis.html) and [Ethereum Transaction Network](https://chartalist.org/eth/EthereumData.html) is publicly available on Chartalist.
 
 # Citing
 Please use the following BibTeX entry:
