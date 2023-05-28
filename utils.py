@@ -136,7 +136,7 @@ def computeNFIAF(start, end, motifs, filePrefix, addrColName, occurColName):
 # @param start The directed NetworkX graph to have the center triad census performed
 # @return A dictionary of dictionaries containing the number of occurrences a node is a center
 #         where the first key is the motif type and the second key is the center node
-def center_triad_census(graph):
+def centerTriadCensus(graph):
     # the triads that contain centers
     motifs = {
         'S1': nx.DiGraph([(1, 2), (1, 3)]),
