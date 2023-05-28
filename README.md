@@ -65,7 +65,7 @@ V(g)$name <- paste("v", 1:vcount(g), sep="")
 ```
 
 
-### Get the centered 3-node motif counts of each node using the utility function in `innerCore.R`
+### Get the centered 3-node motif counts of each node using the utility function in `utils.py`
 ```py
 g = nx.erdos_renyi_graph(n=200, seed=1, p=2 / 200, directed=True)
 >>> centerTriadCensus(g)
