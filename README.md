@@ -6,10 +6,15 @@ These are the supplementary files for the [Core-based Trend Detection paper](lin
 Until this is packaged, source the file(s) `algorithms/innerCore.R` or `utils.py`
 
 ### Get a weighted directed graph with named vertices and edge weights:
+In R:
 ```R
 g <- erdos.renyi.game(200, 2/200, directed = T)
 E(g)$weight <- 1:ecount(g)
 V(g)$name <- paste("v", 1:vcount(g), sep="")
+```
+In Python:
+```py
+g = nx.erdos_renyi_graph(n=200, seed=1, p=2 / 200, directed=True)
 ```
 
 ### Run innerCore with default parameters
@@ -67,7 +72,6 @@ V(g)$name <- paste("v", 1:vcount(g), sep="")
 
 ### Get the centered 3-node motif counts of each node using the utility function in `utils.py`
 ```py
-g = nx.erdos_renyi_graph(n=200, seed=1, p=2 / 200, directed=True)
 >>> centerTriadCensus(g)
 {'motif1': {2: 1, 4: 1, 5: 2, 6: 1, 8: 1, 9: 1, 11: 1, 12: 1, 14: 1, 16: 1, 17: 1, 19: 1, 22: 2, 24: 1, 28: 2, 29: 1, 31: 1, 35: 1, 36: 1, 39: 1, 41: 1, 45: 2, 47: 1, 48: 1, 51: 2, 53: 4, 54: 2, 59: 2, 60: 1, 61: 1, 62: 1, 64: 1, 65: 1, 67: 1, 70: 2, 71: 6, 72: 1, 76: 1, 77: 1, 82: 2, 83: 1, 84: 1, 89: 1, 90: 1, 94: 2, 96: 1, 97: 1, 100: 1, 102: 1, 103: 2, 108: 1, 109: 1, 111: 1, 112: 1, 113: 1, 115: 1, 119: 3, 121: 1, 123: 1, 124: 1, 125: 1, 127: 1, 130: 1, 132: 1, 135: 1, 139: 1, 141: 1, 142: 4, 143: 1, 145: 1, 146: 1, 149: 3, 151: 3, 156: 1, 159: 1, 161: 1, 163: 1, 164: 1, 165: 1, 166: 1, 167: 1, 168: 1, 169: 1, 175: 1, 177: 2, 178: 1, 179: 1, 182: 1, 183: 3, 185: 1, 187: 1, 189: 1, 190: 1, 191: 1, 192: 1, 195: 1, 196: 1, 197: 1, 199: 1}, 
 'motif6': {}, 
