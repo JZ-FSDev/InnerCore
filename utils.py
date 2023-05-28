@@ -1,5 +1,7 @@
 import pandas as pd
 import math
+import networkx as nx
+import itertools as it
 
 # Computes the expansion and decay measure of each day from the day denoted by
 # UNIX timestamp start + interval days to the end day denoted by UNIX timestamp and saves
@@ -127,3 +129,86 @@ def computeNFIAF(start, end, motifs, filePrefix, addrColName, occurColName):
         df = df.reset_index(drop=True)
         df.to_csv("nfiaf_" + str(start) + "_to_" + str(end) + "_" + motif + ".csv")
         
+        
+        
+# Counts the number of occurrences each node is a center of a three-node motif in a given NetworkX graph.
+#
+# @param start The directed NetworkX graph to have the center triad census performed
+# @return A dictionary of dictionaries containing the number of occurrences a node is a center
+#         where the first key is the motif type and the second key is the center node
+def center_triad_census(graph):
+    # the triads that contain centers
+    motifs = {
+        'S1': nx.DiGraph([(1, 2), (1, 3)]),
+        'S4': nx.DiGraph([(2, 1), (3, 1)]),
+        'S5': nx.DiGraph([(1, 2), (2, 3), (1, 3)]),
+        'S6': nx.DiGraph([(1, 3), (2, 3), (2, 1), (3, 1)]),
+        'S11': nx.DiGraph([(1, 2), (1, 3), (3, 1), (3, 2)]),
+    }
+
+    # track occurrences for each node that occurs as a center
+    node_center_counts = {
+        'motif1': {},
+        'motif6': {},
+        'motif5buy': {},
+        'motif5sell': {},
+        'motif4': {},
+        'motif11': {},
+    }
+
+    undir_graph = graph.to_undirected()  # undirected since we need to consider neighbors of incoming and outgoing edges
+
+    for node in graph:
+        neighbors = set(undir_graph.neighbors(node))
+        if len(neighbors) >= 2:
+            doublets = list(it.combinations(neighbors, 2))
+            for doub in doublets:
+                triplet = list(doub)
+                triplet.append(node)  # append the center node itself to form a triplet
+
+                # check for isomorphism of triads that contain a center in the subgraph consisting of the triplet nodes
+                subgraph = graph.subgraph(triplet)
+                for key, value in motifs.items():
+                    if nx.is_isomorphic(subgraph, value):
+                        if key == 'S1':
+                            for node in subgraph:
+                                if subgraph.out_degree(node) == 2:
+                                    if node not in node_center_counts['motif1']:
+                                        node_center_counts['motif1'][node] = 1
+                                    else:
+                                        node_center_counts['motif1'][node] += 1
+                        elif key == 'S6':
+                            for node in subgraph:
+                                if subgraph.out_degree(node) == 2:
+                                    if node not in node_center_counts['motif6']:
+                                        node_center_counts['motif6'][node] = 1
+                                    else:
+                                        node_center_counts['motif6'][node] += 1
+                        elif key == 'S5':
+                            for node in subgraph:
+                                if subgraph.out_degree(node) == 2:
+                                    if node not in node_center_counts['motif5sell']:
+                                        node_center_counts['motif5sell'][node] = 1
+                                    else:
+                                        node_center_counts['motif5sell'][node] += 1
+                                elif subgraph.in_degree(node) == 2:
+                                    if node not in node_center_counts['motif5buy']:
+                                        node_center_counts['motif5buy'][node] = 1
+                                    else:
+                                        node_center_counts['motif5buy'][node] += 1
+                        elif key == 'S4':
+                            for node in subgraph:
+                                if subgraph.in_degree(node) == 2:
+                                    if node not in node_center_counts['motif4']:
+                                        node_center_counts['motif4'][node] = 1
+                                    else:
+                                        node_center_counts['motif4'][node] += 1
+                        elif key == 'S11':
+                            for node in subgraph:
+                                if subgraph.in_degree(node) == 2:
+                                    if node not in node_center_counts['motif11']:
+                                        node_center_counts['motif11'][node] = 1
+                                    else:
+                                        node_center_counts['motif11'][node] += 1
+
+    return node_center_counts
