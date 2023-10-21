@@ -1,6 +1,6 @@
 # InnerCore
 
-These are the supplementary files for the [Core-based Trend Detection paper](link).
+These are the supplementary files for the [Core-based Trend Detection paper](https://github.com/JZ-FSDev/InnerCore/blob/main/InnerCore.pdf).
 
 ## Usage
 Until this is packaged, source the file(s) `algorithms/innerCore.R` or `utils.py`
