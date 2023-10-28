@@ -44,8 +44,8 @@ def computeExpansionDecay(interval, start, end, filePrefix, colName):
         expand = innerCore[currDay].difference(unionSet)
         decay = unionSet.difference(innerCore[currDay])
         timestamp.append(currDay)
-        expansionMeasure.append(len(expand) / len(unionSet))
-        decayMeasure.append(len(decay) / len(unionSet))
+        expansionMeasure.append(len(expand))
+        decayMeasure.append(len(decay))
         currDay += 86400
         intervalStart += 86400
 
