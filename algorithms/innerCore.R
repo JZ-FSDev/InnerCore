@@ -7,7 +7,7 @@ library("igraph")
 #' \code{innerCore} returns a dataframe of nodes that constitute the target innercore
 #'
 #' A modification of alphaCore (https://github.com/friedhelmvictor/alphacore)
-#' allowing for a more efficient and direct identification of an innercore. 
+#' allowing for a more efficient and direct identification of an innerCore. 
 #' Computes a graph's innercore based on a feature set derived from edge attributes 
 #' and optionally static node features using the mahalanobis data depth function at 
 #' the origin.
@@ -223,7 +223,6 @@ countThreeNodeMotifs <- function(input_graph){
   
   names = V(input_graph)$name
   for(node in names){
-    print(node)
     subGraph = graph.neighborhood(input_graph, order = 1, node, mode = 'all')[[1]]
     allMotifs = triad.census(subGraph)
     removeNode = delete.vertices(subGraph, node)
