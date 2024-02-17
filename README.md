@@ -1,6 +1,6 @@
 # InnerCore
 
-These are the supplementary files for the [Core-based Trend Detection paper](https://github.com/JZ-FSDev/InnerCore/blob/main/InnerCore.pdf).
+These are the supplementary files for the [Data Depth and Core-based Trend Detection paper](https://www.frontiersin.org/articles/10.3389/fbloc.2024.1342956/full).
 
 ## Usage
 Until this is packaged, source the file(s) `algorithms/innerCore.R` or `utils.py`
@@ -148,3 +148,25 @@ The full [Ethereum Stablecoin Networks](https://chartalist.org/eth/StablecoinAna
 
 # Citing
 Please use the following BibTeX entry:
+```bib
+@ARTICLE{10.3389/fbloc.2024.1342956,
+  
+AUTHOR={Zhu, Jason and Khan, Arijit and Akcora, Cuneyt Gurcan},   
+	 
+TITLE={Data depth and core-based trend detection on blockchain transaction networks},      
+	
+JOURNAL={Frontiers in Blockchain},      
+	
+VOLUME={7},           
+	
+YEAR={2024},      
+	  
+URL={https://www.frontiersin.org/articles/10.3389/fbloc.2024.1342956},       
+	
+DOI={10.3389/fbloc.2024.1342956},      
+	
+ISSN={2624-7852},   
+   
+ABSTRACT={Blockchains are significantly easing trade finance, with billions of dollars worth of assets being transacted daily. However, analyzing these networks remains challenging due to the sheer volume and complexity of the data. We introduce a method named InnerCore that detects market manipulators within blockchain-based networks and offers a sentiment indicator for these networks. This is achieved through data depth-based core decomposition and centered motif discovery, ensuring scalability. InnerCore is a computationally efficient, unsupervised approach suitable for analyzing large temporal graphs. We demonstrate its effectiveness by analyzing and detecting three recent real-world incidents from our datasets: the catastrophic collapse of LunaTerra, the Proof-of-Stake switch of Ethereum, and the temporary peg loss of USDC–while also verifying our results against external ground truth. Our experiments show that InnerCore can match the qualified analysis accurately without human involvement, automating blockchain analysis in a scalable manner, while being more effective and efficient than baselines and state-of-the-art attributed change detection approach in dynamic graphs.}
+}
+```
